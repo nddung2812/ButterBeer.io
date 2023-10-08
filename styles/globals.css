@@ -17,3 +17,7 @@
     pointer-events: none;
   }
 }
+
+.bg-purple {
+  background-color: rgb(148, 32, 194) !important;
+}
