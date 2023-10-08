@@ -17,3 +17,7 @@
     pointer-events: none;
   }
 }
+
+.background-gradient::before {
+  background: radial-gradient( 20% 50% at 50% 50%, #8b3dff49 0%, rgba(7, 13, 77, 0.116) 100% )
+}
