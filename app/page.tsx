@@ -20,7 +20,7 @@ export default function HomePage() {
           Allow us to assist in transforming every business challenge into digital opportunities.
         </h2>
         <Link
-          className="bg-purple rounded-full text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-blue-500 transition"
+          className="bg-purple-600 rounded-full text-white font-medium px-6 py-3 sm:mt-10 mt-8 hover:bg-purple-500 transition"
           href="/register"
         >
           Register now
