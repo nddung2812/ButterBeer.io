@@ -8,6 +8,7 @@ let ogimage = "https://firebasestorage.googleapis.com/v0/b/digifybiz-899f5.appsp
 let sitename = "ButterBeer.io";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.butterbeer.io'),
   title,
   description,
   icons: {
