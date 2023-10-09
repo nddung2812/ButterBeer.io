@@ -20,7 +20,10 @@ type FormValues = {
 
 const schema = yup.object().shape({
     fullName: yup.string().required('Full Name is required'),
-    businessEmail: yup.string().required('Business Name is required'),
+    businessEmail: yup
+        .string()
+        .email('Invalid email format')
+        .required('Email is required'),
     businessProblems: yup.string().required('Business Problems are required'),
 });
 
