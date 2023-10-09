@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Footer from "../../components/Footer";
@@ -11,11 +12,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import axios from "axios";
+import emailjs from '@emailjs/browser';
+
 
 type FormValues = {
     fullName: string;
     businessEmail: string;
-    businessProblems: string;
 };
 
 const schema = yup.object().shape({
@@ -24,11 +27,10 @@ const schema = yup.object().shape({
         .string()
         .email('*Invalid email format')
         .required('*Email is required'),
-    businessProblems: yup.string().required('*Business Problems are required'),
 });
 
 export default function RegisterPage() {
-
+    const form = useRef();
     const {
         handleSubmit,
         control,
@@ -38,13 +40,19 @@ export default function RegisterPage() {
         resolver: yupResolver(schema),
     });
 
+
     const onSubmit = (data: FormValues) => {
         // You can perform your form submission logic here
         // For this example, we'll just show a success message
         toast.success('Form submitted successfully!', {
             position: 'top-right',
         });
-        console.log(data)
+        emailjs.send('service_y9xivx5', 'template_6n6pybr', data, 'yauFqbajnU38sZMgv')
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function (error) {
+                console.log('FAILED...', error);
+            });
         reset(); // Reset the form after submission
     };
 
@@ -58,7 +66,7 @@ export default function RegisterPage() {
                 <ResizablePanel>
                     <AnimatePresence mode="wait">
                         <motion.div className="flex justify-between items-center w-full flex-col mt-4">
-                            <form onSubmit={handleSubmit(onSubmit)} className="flex justify-between items-center w-full flex-col mt-4">
+                            <form onSubmit={handleSubmit(onSubmit)} ref={form} className="flex justify-between items-center w-full flex-col mt-4">
                                 <div className="space-y-4 w-full max-w-sm">
                                     <div className="flex mt-3 items-center space-x-3">
                                         <Image
@@ -120,39 +128,6 @@ export default function RegisterPage() {
                                     )}
 
                                 </div>
-                                <div className="space-y-4 w-full max-w-sm">
-                                    <div className="flex mt-10 items-center space-x-3">
-                                        <Image
-                                            src="/number-3-white.svg"
-                                            width={30}
-                                            height={30}
-                                            alt="3 icon"
-                                        />
-                                        <label className="block mb-2" htmlFor="businessProblems">
-                                            Share Your Business Challenges
-                                        </label>
-                                    </div>
-                                    <Controller
-                                        name="businessProblems"
-                                        control={control}
-                                        defaultValue=""
-                                        render={({ field }) => (
-                                            <textarea
-                                                {...field}
-                                                id="businessProblems"
-                                                placeholder="Your business problems"
-                                                className="border rounded w-full p-2 text-black"
-                                                rows={4}
-                                            />
-                                        )}
-                                    />
-
-                                    {errors.businessProblems && (
-                                        <p className="text-red-500">
-                                            {errors.businessProblems.message}
-                                        </p>
-                                    )}
-                                </div>
                                 <div className="my-4">
                                     <button
                                         type="submit"
@@ -168,6 +143,6 @@ export default function RegisterPage() {
                 </ResizablePanel>
             </main>
             <Footer />
-        </div>
+        </div >
     );
 }
