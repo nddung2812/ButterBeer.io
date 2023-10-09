@@ -9,14 +9,14 @@ export default function HomePage() {
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-200 sm:text-7xl">
           Empowering Business with {" "}
           <span className="relative whitespace-nowrap text-blue-600">
             <SquigglyLines />
             <span className="relative">ButterBeer.io</span>
           </span>{" "}
         </h1>
-        <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-400  text-gray-500 leading-7">
+        <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-400  text-gray-400 leading-7">
           Allow us to assist in transforming every business challenge into digital opportunities.
         </h2>
         <Link
