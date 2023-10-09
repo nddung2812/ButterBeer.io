@@ -30,7 +30,7 @@ const schema = yup.object().shape({
 });
 
 export default function RegisterPage() {
-    const form = useRef();
+    const form = useRef<HTMLFormElement | null>(null);
     const {
         handleSubmit,
         control,
